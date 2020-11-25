@@ -1,0 +1,370 @@
+//  .App {
+//   text-align: center;
+// }
+
+// .App-logo {
+//   height: 40vmin;
+//   pointer-events: none;
+// }
+
+// @media (prefers-reduced-motion: no-preference) {
+//   .App-logo {
+//     animation: App-logo-spin infinite 20s linear;
+//   }
+// }
+
+// .App-header {
+//   background-color: #282c34;
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: calc(10px + 2vmin);
+//   color: white;
+// }
+
+// .App-link {
+//   color: #61dafb;
+// }
+
+// @keyframes App-logo-spin {
+//   from {
+//     transform: rotate(0deg);
+//   }
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
+@font-face {
+  font-family: "Corpid C1s";
+  src: url("./fonts/corpidc1s-regular-webfont.eot?") format("eot"),
+    url("./fonts/corpidc1s-regular-webfont.woff") format("woff"),
+    url("./fonts/corpidc1s-regular-webfont.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Corpid C1s Bold";
+  src: url("./fonts/corpidc1s-bold-webfont.eot?") format("eot"),
+    url("./fonts/corpidc1s-bold-webfont.woff") format("woff"),
+    url("./fonts/corpidc1s-bold-webfont.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Corpid C1s Bold Italic";
+  src: url("./fonts/corpidc1s-bolditalic-webfont.eot?") format("eot"),
+    url("./fonts/corpidc1s-bolditalic-webfont.woff") format("woff"),
+    url("./fonts/corpidc1s-bolditalic-webfont.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Corpid C1s Heavy";
+  src: url("./fonts/corpidc1s-heavy-webfont.eot?") format("eot"),
+    url("./fonts/corpidc1s-heavy-webfont.woff") format("woff"),
+    url("./fonts/corpidc1s-heavy-webfont.ttf") format("truetype");
+}
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+body {
+  // background-color: aquamarine ;
+  font-family: "Corpid C1s";
+  height: 100%;
+
+  //display: flex;
+  // overflow-y: hidden;
+}
+#root {
+  height: 100%;
+}
+
+.wrap {
+  height: 100%;
+  //overflow-y: hidden;
+}
+// .header {
+//   width: 100%;
+//   .left {
+//     height: 72px;
+//     background-color: #d61f26;
+//     max-width: 20%;
+//     min-width: 268px;
+
+//     text-align: right;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-content: center;
+//     @media screen and (max-width: 600px) {
+//       max-width: 100%;
+//     }
+
+//     .leftWrapper {
+//       //@at-root border: 1px solid yellow;
+//       margin: 0 auto;
+//       .top {
+//         display: flex;
+//         // width: 100%;
+//         align-items: center;
+//         justify-content: flex-end;
+//         font-size: 16px;
+//         font-weight: 900;
+//         font-stretch: normal;
+//         font-style: italic;
+//         line-height: normal;
+//         letter-spacing: normal;
+//         color: #ffffff;
+
+//         img {
+//           width: 30px;
+//           height: 20px;
+//         }
+//       }
+//       .bottom {
+//         display: flex;
+//         align-items: center;
+//         justify-content: flex-end;
+//         button {
+//           font-size: 12px;
+//           font-weight: normal;
+//           font-stretch: normal;
+//           font-style: normal;
+//           line-height: normal;
+//           letter-spacing: normal;
+//           color: #f7b500;
+//           background-color: transparent;
+//           border: none;
+//           text-decoration: underline;
+//         }
+//       }
+//     }
+//   }
+// }
+.contentWrapper {
+ display: flex;
+padding: 0 5%;
+.radioField{
+  display: flex;
+}
+.result {padding: 10%;}
+}
+// .contentWrapper {
+//   display: flex;
+//   //flex: 1;
+//   height: 100%;
+//   // overflow-y: hidden;
+//   .inputFlield {
+//     flex: 0 0 auto;
+//     width: 20%;
+//     min-width: 268px;
+//     //  height: 900px;
+//     display: block;
+//     overflow: auto;
+
+//     background-color: #222d33;
+//     padding: 20px 2%;
+//     @media screen and (max-width: 600px) {
+//       width: auto;
+//       min-width: auto;
+//     }
+
+//     h3 {
+//       font-size: 14px;
+//       font-weight: normal;
+//       font-stretch: normal;
+//       font-style: normal;
+//       line-height: normal;
+//       letter-spacing: normal;
+//       color: #dedede;
+//     }
+//     .radios {
+//       display: flex;
+//       flex-direction: row;
+//       justify-content: space-between;
+//       @media screen and (max-width: 600px) {
+//         flex-direction: column;
+//       }
+//     }
+//     label {
+//       width: 101px;
+//       height: 30px;
+//       border-radius: 8px;
+//       border: solid 1px #d8d8d8;
+//       background-color: #222d33;
+//       font-size: 14px;
+//       font-weight: normal;
+//       font-stretch: normal;
+//       font-style: normal;
+//       line-height: normal;
+//       letter-spacing: normal;
+//       // text-align: center;
+//       color: #ffffff;
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//     }
+//     label::before {
+//       display: none;
+//     }
+
+//     label::after {
+//       display: none;
+//     }
+//     .active {
+//       label {
+//         background-color: #29e6ff;
+//         color: #343b46;
+//         border: none;
+//       }
+//     }
+
+//     .buttonWrap {
+//       text-align: right;
+//       padding-top: 30px;
+
+//       button {
+//         width: 101px;
+//         height: 30px;
+//         border-radius: 8px;
+//         background-color: #ffd700;
+//         font-family: "Corpid C1s";
+//         text-transform: uppercase;
+//         font-size: 14px;
+//         font-weight: normal;
+//         font-stretch: normal;
+//         font-style: normal;
+//         line-height: normal;
+//         letter-spacing: normal;
+//         text-align: center;
+//         color: #343b46;
+//         border-color: transparent;
+//       }
+//     }
+//   }
+
+//   .result {
+//     // border: 1px solid yellow;
+//     width: 100%;
+//     text-align: center;
+//     padding-top: 5%;
+//     @media screen and (max-width: 700px) {
+//       padding-top: 25%;
+//     }
+//     h1 {
+//       font-family: "Corpid C1s heavy";
+//       font-size: 36px;
+//       font-weight: 900;
+//       font-stretch: normal;
+//       font-style: normal;
+//       line-height: normal;
+//       letter-spacing: normal;
+//       text-align: center;
+//       color: #d61f26;
+//       @media screen and (max-width: 800px) {
+//         font-size: 3vw;
+//       }
+//     }
+
+//     h2 {
+//       font-family: "Corpid C1s heavy";
+//       font-size: 120px;
+//       font-weight: 900;
+//       font-stretch: normal;
+//       font-style: normal;
+//       line-height: normal;
+//       letter-spacing: normal;
+//       text-align: center;
+//       color: #343b46;
+//       //display: flex;
+//       max-width: 50vw;
+//       margin: 0 auto;
+//       overflow-wrap: break-word;
+
+//       @media screen and (max-width: 800px) {
+//         font-size: 10vw;
+//       }
+//       span {
+//         font-size: 40px;
+//         font-weight: normal;
+//         @media screen and (max-width: 800px) {
+//           font-size: 3vw;
+//         }
+//       }
+//     }
+
+//     .aveListeners {
+//       display: flex;
+//       flex-direction: row;
+//       justify-content: center;
+//       @media screen and (max-width: 1100px) {
+//         flex-direction: column;
+//         align-items: center;
+//       }
+//       .part {
+//         // display: flex ;
+//         //   flex-direction: column;
+//         //   align-items: center;
+//         //  border: 1px solid yellow;
+//         width: 30%;
+//         padding: 5%;
+//         @media screen and (max-width: 1100px) {
+//           padding: 2%;
+//           width: 100%;
+//         }
+//         h3 {
+//           font-family: "Corpid C1s";
+//           font-size: 28px;
+//           font-weight: normal;
+//           font-stretch: normal;
+//           font-style: normal;
+//           line-height: normal;
+//           letter-spacing: normal;
+//           text-align: center;
+//           color: #d61f26;
+//           @media screen and (max-width: 800px) {
+//             font-size: 3vw;
+//           }
+//         }
+
+//         h4 {
+//           font-family: "Corpid C1s Heavy";
+//           font-size: 48px;
+//           font-weight: 900;
+//           font-stretch: normal;
+//           font-style: normal;
+//           line-height: normal;
+//           letter-spacing: normal;
+//           text-align: center;
+//           color: #343b46;
+//           @media screen and (max-width: 800px) {
+//             font-size: 5vw;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+// .ui.radio.checkbox .box,
+// .ui.radio.checkbox label {
+//   padding-left: 0;
+// }
+
+// .ui.fluid.dropdown {
+//   border-radius: 10px;
+// }
+
+// // .ui.selection.dropdown{
+// //   padding: .78571429em 2.1em .78571429em 1em;
+// // }
+
+// .ui.fluid.input {
+//   input {
+//     border-radius: 10px !important;
+//   }
+// }
+
+// .ui.form {
+//   font-size: 1rem;
+//   height: 100%;
+// }
