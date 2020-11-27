@@ -22,6 +22,11 @@ const InputNumber = (props) => {
         Please enter a valid number
       </Label>
     )}
+    {props.isChecking && !props.value && (
+        <Label basic color="red" pointing="left">
+          Please enter {props.label}
+        </Label>
+      )}
   </div>
     
   );

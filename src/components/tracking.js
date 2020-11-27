@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { GoogleSpreadsheet } from "google-spreadsheet";
 
 
@@ -20,7 +20,8 @@ const Tracking =() => {
         // loads document properties and worksheets
         await doc.loadInfo();
         const sheet = doc.sheetsById[SHEET_ID];
-        const result = await sheet.addRow(row);
+      // const result = await sheet.addRow(row);
+       await sheet.addRow(row);
       } catch (e) {
         console.error('Error: ', e);
       }

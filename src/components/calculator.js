@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form } from "semantic-ui-react";
 
 import CountryList from "../constants/countryList";
 import DropdownField from "./dropDownField";
 import InputNumber from "./inputNumber";
 import RadioField from "./radioField";
-import Tracking from "./tracking";
+//import Tracking from "./tracking";
 
 const Calculator = () => {
   const countryList = new CountryList();
@@ -28,13 +28,10 @@ const Calculator = () => {
   let [variation, setVariation] = useState(undefined);
   let [campaign360, setCampaign360] = useState(undefined);
   let [offerDeal, setOfferDeal] = useState(undefined);
+  let [isChecking, setIsChecking] = useState(undefined);
 
-  // const formatter = new Intl.NumberFormat("en-US", {
-  //   style: "currency",
-  //   currency: "EUR",
-  //   maximumFractionDigits: 0,
-  //   minimumFractionDigits: 0,
-  // });
+ 
+let isConfirmed = market&&budget&&campainLengthNumber&&spotLength&&variation?true:false
 
   let estimatedGRPs = budget && spotLength && budget / (spotLength * 10);
   let variations =
@@ -49,15 +46,22 @@ const Calculator = () => {
   //output
   let estimatedSpots =
     budget && spotLength && budget / countryList.costPerSpot(spotLength);
-  let isFatigued = offerDealNumber&&estimatedGRPs&&(offerDealNumber > estimatedGRPs ? "NO" : "YES");
+  let isFatigued =
+    offerDealNumber &&
+    estimatedGRPs &&
+    (offerDealNumber > estimatedGRPs ? "NO" : "YES");
   let recomendedNrConcept =
     market &&
     estimatedGRPs / data[market]["Recommended max GRP per creative concept"];
   let advertsingPressure =
-  estimatedGRPs&&campainLengthNumber&&campainLengthType&&( estimatedGRPs /
-    (campainLengthNumber * countryList.campainLengthType(campainLengthType)));
+    estimatedGRPs &&
+    campainLengthNumber &&
+    campainLengthType &&
+    estimatedGRPs /
+      (campainLengthNumber * countryList.campainLengthType(campainLengthType));
   let isTooHigh =
-    market &&advertsingPressure&&
+    market &&
+    advertsingPressure &&
     (advertsingPressure > data[market]["Recommended GRP per day"]
       ? "YES"
       : "NO");
@@ -73,17 +77,18 @@ const Calculator = () => {
     setMarket("");
     setBudget("");
     setCampainLengthNumber("");
-    setCampainLengthType("");
+    setCampainLengthType("Day");
     setSpotLength("");
     setVariation("");
     setCampaign360("");
     setOfferDeal("");
+    setIsChecking(undefined)
   };
 
   return (
     <Form>
       <div className="contentWrapper">
-        <Tracking/>
+        {/* <Tracking/> */}
         <div className="inputFlield">
           <h3> Market</h3>
           <h4>{market}</h4>
@@ -92,17 +97,22 @@ const Calculator = () => {
             options={marketOptions}
             handleChange={setMarket}
             value={market}
+            label="market"
+            isChecking={isChecking}
           />
 
           <h3> Budget €</h3>
           {/* <h4>{budget}</h4> */}
-          <InputNumber value={budget} handleChange={setBudget} />
+          <InputNumber value={budget} handleChange={setBudget}  label="budget"
+            isChecking={isChecking} />
 
           <h3> Campaign length </h3>
           {/* <h4>{campainLengthNumber}</h4> */}
           <InputNumber
             value={campainLengthNumber}
             handleChange={setCampainLengthNumber}
+            label="campaign length"
+            isChecking={isChecking}
           />
 
           {/* <h3> Campaign length type</h3> */}
@@ -112,6 +122,7 @@ const Calculator = () => {
             options={campainLengthTypeOptions}
             handleChange={setCampainLengthType}
             value={campainLengthType}
+            defaultValue="Day"
           />
 
           <h3> Spot length</h3>
@@ -121,6 +132,8 @@ const Calculator = () => {
             options={spotLengthOptions}
             handleChange={setSpotLength}
             value={spotLength}
+            label="spot length"
+            isChecking={isChecking}
           />
 
           <h3> Number of variations</h3>
@@ -130,6 +143,8 @@ const Calculator = () => {
             options={variationOptions}
             handleChange={setVariation}
             value={variation}
+            label="number of variations"
+            isChecking={isChecking}
           />
           <h3> 360 campaign</h3>
           {/* <h4>{campaign360 + ""}</h4> */}
@@ -146,39 +161,58 @@ const Calculator = () => {
             value={offerDeal}
             handleChange={setOfferDeal}
           />
+          <button className="resetButton" onClick={() => setIsChecking(true)}>
+            Caculate
+          </button>
           <button className="resetButton" onClick={reset}>
             Reset
           </button>
         </div>
-        <div className="result">
-          {/* <h3>Use Avg C/GRP for total GRP: {estimatedGRPs}</h3>
+        {isConfirmed && (
+          <div className="result">
+            {/* <h3>Use Avg C/GRP for total GRP: {estimatedGRPs}</h3>
           <h3>Variations: {variations}</h3>
           <h3>campaign360Number: {campaign360Number}</h3>
           <h3>offerDealNumber: {offerDealNumber}</h3> */}
-          Output
-          <h3>Estimated GRPs: {estimatedGRPs&&Math.round(estimatedGRPs)}</h3>
-          <h3>Estimated spots: {estimatedSpots&&Math.round(estimatedSpots)}</h3>
-          <h3>
-            Would it be fatigued during the specified campaign period?{" "}
-            {isFatigued}
-          </h3>
-          {isFatigued === "YES" && (
+            Output
             <h3>
-              Recommended number of concepts for period:{" "}
-              {recomendedNrConcept < 2 ? 2 :Math.round(recomendedNrConcept) }
+              Estimated GRPs: {estimatedGRPs && Math.round(estimatedGRPs)}
             </h3>
-          )}
-          <h3>Is the advertsing pressure too high? : {isTooHigh}</h3>
-          {/* <h3>{advertsingPressure}</h3>
+            <h3>
+              Estimated spots: {estimatedSpots && Math.round(estimatedSpots)}
+            </h3>
+            <h3>
+              Would it be fatigued during the specified campaign period?{" "}
+              {isFatigued}
+            </h3>
+            {isFatigued === "YES" && (
+              <h3>
+                Recommended number of concepts for period:{" "}
+                {recomendedNrConcept < 2 ? 2 : Math.round(recomendedNrConcept)}
+              </h3>
+            )}
+            <h3>Is the advertsing pressure too high? : {isTooHigh}</h3>
+            {/* <h3>{advertsingPressure}</h3>
           <h3>{market&&data[market]["Recommended GRP per day"]}</h3> */}
-          {isTooHigh === "YES" && (
-            <h3>Optimal weekly GRP Delivery:{optimalWeeklyGRP&&Math.round(optimalWeeklyGRP)} </h3>
-          )}
-          {isTooHigh === "YES" && (
-            <h3>Actual weekly GRP Delivery: {actualWeeklyGRP&&Math.round(actualWeeklyGRP)}</h3>
-          )}
-          <h3>Optimal GRP per creative concept: {optimalGRPperConcept&&Math.round(optimalGRPperConcept)}</h3>
-        </div>
+            {isTooHigh === "YES" && (
+              <h3>
+                Optimal weekly GRP Delivery:
+                {optimalWeeklyGRP && Math.round(optimalWeeklyGRP)}{" "}
+              </h3>
+            )}
+            {isTooHigh === "YES" && (
+              <h3>
+                Actual weekly GRP Delivery:{" "}
+                {actualWeeklyGRP && Math.round(actualWeeklyGRP)}
+              </h3>
+            )}
+            <h3>
+              Optimal GRP per creative concept:{" "}
+              {optimalGRPperConcept && Math.round(optimalGRPperConcept)}
+            </h3>
+            <p>This is estimation not final recommendation</p>
+          </div>
+        )}
       </div>
     </Form>
   );
