@@ -4,10 +4,10 @@ import {Form, Radio} from "semantic-ui-react";
 
 const InputText = (props) => {
   return (
-     <div className="radioField">
+     <div className="radioField radios">
      <Form.Field>
               <Radio
-                // className={adFormat === 1 ? "active" : ""}
+                 className={props.value === true ? "active" : ""}
                 label="Yes"
                 name={props.name}
                 value={true}
@@ -17,7 +17,7 @@ const InputText = (props) => {
             </Form.Field>
             <Form.Field>
               <Radio
-                //className={adFormat === 0.8 ? "active" : ""}
+               className={props.value === false ? "active" : ""}
                 label="No"
                 name={props.name}
                 value={false}

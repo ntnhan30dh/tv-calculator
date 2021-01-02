@@ -26,12 +26,19 @@ const Calculator = () => {
   let [campainLengthType, setCampainLengthType] = useState(undefined);
   let [spotLength, setSpotLength] = useState(undefined);
   let [variation, setVariation] = useState(undefined);
-  let [campaign360, setCampaign360] = useState(undefined);
-  let [offerDeal, setOfferDeal] = useState(undefined);
+  let [campaign360, setCampaign360] = useState(false);
+  let [offerDeal, setOfferDeal] = useState(false);
   let [isChecking, setIsChecking] = useState(undefined);
 
- 
-let isConfirmed = market&&budget&&campainLengthNumber&&spotLength&&variation?true:false
+  let isConfirmed =
+    market &&
+    budget &&
+    campainLengthNumber &&
+    spotLength &&
+    variation &&
+    isChecking
+      ? true
+      : false;
 
   let estimatedGRPs = budget && spotLength && budget / (spotLength * 10);
   let variations =
@@ -41,7 +48,10 @@ let isConfirmed = market&&budget&&campainLengthNumber&&spotLength&&variation?tru
       countryList.variationFactor(variation);
   let campaign360Number = campaign360 === true ? variations * 0.8 : variations;
   let offerDealNumber =
-    offerDeal === true ? data[market]["Deal/ Offer Cap"] : campaign360Number;
+    // only caculate when market is available
+    market && offerDeal === true
+      ? data[market]["Deal/ Offer Cap"]
+      : campaign360Number;
 
   //output
   let estimatedSpots =
@@ -80,9 +90,9 @@ let isConfirmed = market&&budget&&campainLengthNumber&&spotLength&&variation?tru
     setCampainLengthType("Day");
     setSpotLength("");
     setVariation("");
-    setCampaign360("");
-    setOfferDeal("");
-    setIsChecking(undefined)
+    setCampaign360(false);
+    setOfferDeal(false);
+    setIsChecking(undefined);
   };
 
   return (
@@ -91,7 +101,7 @@ let isConfirmed = market&&budget&&campainLengthNumber&&spotLength&&variation?tru
         {/* <Tracking/> */}
         <div className="inputFlield">
           <h3> Market</h3>
-          <h4>{market}</h4>
+          {/* <h4>{market}</h4> */}
           <DropdownField
             placeholder="Select Market"
             options={marketOptions}
@@ -103,29 +113,35 @@ let isConfirmed = market&&budget&&campainLengthNumber&&spotLength&&variation?tru
 
           <h3> Budget €</h3>
           {/* <h4>{budget}</h4> */}
-          <InputNumber value={budget} handleChange={setBudget}  label="budget"
-            isChecking={isChecking} />
-
-          <h3> Campaign length </h3>
-          {/* <h4>{campainLengthNumber}</h4> */}
           <InputNumber
-            value={campainLengthNumber}
-            handleChange={setCampainLengthNumber}
-            label="campaign length"
+            value={budget}
+            handleChange={setBudget}
+            label="budget"
             isChecking={isChecking}
+            fluid={true}
           />
+          <h3> Campaign Length </h3>
+          <div className="campainLength">
+            {/* <h4>{campainLengthNumber}</h4> */}
+            <InputNumber
+              value={campainLengthNumber}
+              handleChange={setCampainLengthNumber}
+              label="campaign length"
+              isChecking={isChecking}
+            />
 
-          {/* <h3> Campaign length type</h3> */}
-          {/* <h4>{campainLengthType}</h4> */}
-          <DropdownField
-            placeholder=""
-            options={campainLengthTypeOptions}
-            handleChange={setCampainLengthType}
-            value={campainLengthType}
-            defaultValue="Day"
-          />
+            {/* <h3> Campaign length type</h3> */}
+            {/* <h4>{campainLengthType}</h4> */}
+            <DropdownField
+              placeholder=""
+              options={campainLengthTypeOptions}
+              handleChange={setCampainLengthType}
+              value={campainLengthType}
+              defaultValue="Day"
+            />
+          </div>
 
-          <h3> Spot length</h3>
+          <h3> Spot Length</h3>
           {/* <h4>{spotLength}</h4> */}
           <DropdownField
             placeholder="Select Spot length"
@@ -136,7 +152,7 @@ let isConfirmed = market&&budget&&campainLengthNumber&&spotLength&&variation?tru
             isChecking={isChecking}
           />
 
-          <h3> Number of variations</h3>
+          <h3>N° of variations</h3>
           {/* <h4>{variation}</h4> */}
           <DropdownField
             placeholder="Select Spot length"
@@ -146,7 +162,7 @@ let isConfirmed = market&&budget&&campainLengthNumber&&spotLength&&variation?tru
             label="number of variations"
             isChecking={isChecking}
           />
-          <h3> 360 campaign</h3>
+          <h3> 360 Campaign</h3>
           {/* <h4>{campaign360 + ""}</h4> */}
           <RadioField
             name="360 campaign"
@@ -154,19 +170,21 @@ let isConfirmed = market&&budget&&campainLengthNumber&&spotLength&&variation?tru
             handleChange={setCampaign360}
           />
 
-          <h3> Offer / deal?</h3>
+          <h3> Offer / Deal?</h3>
           {/* <h4>{offerDeal + ""}</h4> */}
           <RadioField
             name="offerDeal"
             value={offerDeal}
             handleChange={setOfferDeal}
           />
-          <button className="resetButton" onClick={() => setIsChecking(true)}>
-            Caculate
-          </button>
-          <button className="resetButton" onClick={reset}>
-            Reset
-          </button>
+          <div className="buttonWrap radios">
+            <button className="resetButton" onClick={() => setIsChecking(true)}>
+              Caculate
+            </button>
+            <button className="resetButton" onClick={reset}>
+              Reset
+            </button>
+          </div>
         </div>
         {isConfirmed && (
           <div className="result">
@@ -174,21 +192,27 @@ let isConfirmed = market&&budget&&campainLengthNumber&&spotLength&&variation?tru
           <h3>Variations: {variations}</h3>
           <h3>campaign360Number: {campaign360Number}</h3>
           <h3>offerDealNumber: {offerDealNumber}</h3> */}
-            Output
-            <h3>
-              Estimated GRPs: {estimatedGRPs && Math.round(estimatedGRPs)}
-            </h3>
-            <h3>
-              Estimated spots: {estimatedSpots && Math.round(estimatedSpots)}
-            </h3>
+
+            <h1>
+              Estimated GRPs{" "}
+              <span>{estimatedGRPs && Math.round(estimatedGRPs)}</span>
+            </h1>
+            <h1>
+              Estimated spots{" "}
+              <span> {estimatedSpots && Math.round(estimatedSpots)} </span>
+            </h1>
             <h3>
               Would it be fatigued during the specified campaign period?{" "}
-              {isFatigued}
+              <span>{isFatigued} </span>
             </h3>
             {isFatigued === "YES" && (
               <h3>
                 Recommended number of concepts for period:{" "}
-                {recomendedNrConcept < 2 ? 2 : Math.round(recomendedNrConcept)}
+                <span>
+                  {recomendedNrConcept < 2
+                    ? 2
+                    : Math.round(recomendedNrConcept)}
+                </span>
               </h3>
             )}
             <h3>Is the advertsing pressure too high? : {isTooHigh}</h3>

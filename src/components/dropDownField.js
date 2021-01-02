@@ -7,7 +7,7 @@ const DropDownField = (props) => {
     <div>
       <Dropdown
         placeholder={props.placeholder}
-        // fluid
+        fluid
         search
         selection
         options={props.options}

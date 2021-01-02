@@ -12,6 +12,7 @@ const InputNumber = (props) => {
   return (
   <div>
     <Input
+     fluid= {props.fluid}
       value={props.value}
       onChange={(e, { value }) => value >= 0 ? props.handleChange(value) : props.handleChange("")}
       type="number"
