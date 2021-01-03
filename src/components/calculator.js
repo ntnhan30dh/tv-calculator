@@ -23,7 +23,7 @@ const Calculator = () => {
   let [market, setMarket] = useState(undefined);
   let [budget, setBudget] = useState(undefined);
   let [campainLengthNumber, setCampainLengthNumber] = useState(undefined);
-  let [campainLengthType, setCampainLengthType] = useState(undefined);
+  let [campainLengthType, setCampainLengthType] = useState("Day");
   let [spotLength, setSpotLength] = useState(undefined);
   let [variation, setVariation] = useState(undefined);
   let [campaign360, setCampaign360] = useState(false);
@@ -155,7 +155,7 @@ const Calculator = () => {
           <h3>N° of variations</h3>
           {/* <h4>{variation}</h4> */}
           <DropdownField
-            placeholder="Select Spot length"
+            placeholder="Enter number of variations"
             options={variationOptions}
             handleChange={setVariation}
             value={variation}
@@ -193,48 +193,67 @@ const Calculator = () => {
           <h3>campaign360Number: {campaign360Number}</h3>
           <h3>offerDealNumber: {offerDealNumber}</h3> */}
 
-            <h1>
-              Estimated GRPs{" "}
+            <div className="resulRow">
+              <h1>Estimated GRPs </h1>
               <span>{estimatedGRPs && Math.round(estimatedGRPs)}</span>
-            </h1>
+            </div>
+            <div className="resulRow">
             <h1>
               Estimated spots{" "}
-              <span> {estimatedSpots && Math.round(estimatedSpots)} </span>
             </h1>
-            <h3>
+              <span> {estimatedSpots && Math.round(estimatedSpots)} </span>
+            </div>
+            <div className="resulRow">
+              <h3>
               Would it be fatigued during the specified campaign period?{" "}
-              <span>{isFatigued} </span>
             </h3>
+              <p>{isFatigued} </p>
+            </div>
             {isFatigued === "YES" && (
+              <div className="resulRow">
               <h3>
                 Recommended number of concepts for period:{" "}
-                <span>
+              </h3>
+                <p>
                   {recomendedNrConcept < 2
                     ? 2
                     : Math.round(recomendedNrConcept)}
-                </span>
-              </h3>
+                </p>
+              </div>
             )}
-            <h3>Is the advertsing pressure too high? : {isTooHigh}</h3>
+            <div className="resulRow">
+            <h3>Is the advertsing pressure too high? : </h3>
+            <p>{isTooHigh}</p>
+            </div>
             {/* <h3>{advertsingPressure}</h3>
           <h3>{market&&data[market]["Recommended GRP per day"]}</h3> */}
             {isTooHigh === "YES" && (
+              <div className="resulRow">
               <h3>
                 Optimal weekly GRP Delivery:
-                {optimalWeeklyGRP && Math.round(optimalWeeklyGRP)}{" "}
               </h3>
+              <p>{optimalWeeklyGRP && Math.round(optimalWeeklyGRP)}{" "}</p>
+              </div>
             )}
             {isTooHigh === "YES" && (
+              <div className="resulRow">
               <h3>
                 Actual weekly GRP Delivery:{" "}
-                {actualWeeklyGRP && Math.round(actualWeeklyGRP)}
               </h3>
+              <p>
+                {actualWeeklyGRP && Math.round(actualWeeklyGRP)}
+              </p>
+              </div>
             )}
+            <div className="resulRow">
             <h3>
               Optimal GRP per creative concept:{" "}
-              {optimalGRPperConcept && Math.round(optimalGRPperConcept)}
             </h3>
-            <p>This is estimation not final recommendation</p>
+            <p>
+              {optimalGRPperConcept && Math.round(optimalGRPperConcept)}
+            </p>
+            </div>
+            <h4>This is estimation not final recommendation</h4>
           </div>
         )}
       </div>
