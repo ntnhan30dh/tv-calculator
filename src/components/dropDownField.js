@@ -16,7 +16,7 @@ const DropDownField = (props) => {
         value={props.value}
       />
       {props.isChecking && !props.value && (
-        <Label basic color="red" pointing="left">
+        <Label basic color="red" pointing="above">
           Please enter {props.label}
         </Label>
       )}

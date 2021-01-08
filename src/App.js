@@ -26,7 +26,7 @@ const App = () => {
               <div className="leftWrapper">
                 <div className="top">
                   <img src={logo} alt="logo" />
-                  TV Calculator
+                 TVC Media Pressure Optimiser
                 </div>
                 <div className="bottom">
                   <Login setLoginState={setLoginState} />
@@ -43,7 +43,7 @@ const App = () => {
               <div className="leftWrapper">
                 <div className="top">
                   <img src={logo} alt="logo" />
-                  TV Calculator
+                 TVC Media Pressure Optimiser
                 </div>
                 <div className="bottom">
                   <Logout setLoginState={setLoginState} />

@@ -388,6 +388,26 @@ body {
       }
     }
   }
+
+  .trafficLight{
+    width: 60%;
+   //text-align: left;
+    margin: 0 auto;
+    padding: 2%;
+  }
+
+  .red{
+    border:5px solid #d61f26; 
+  }
+
+  .amber{
+    border:5px solid #ffd700; 
+  
+  }
+
+  .green{
+    border:5px solid #6aff00; 
+  }
 }
 
 .ui.radio.checkbox .box,

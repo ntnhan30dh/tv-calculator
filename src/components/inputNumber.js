@@ -19,12 +19,12 @@ const InputNumber = (props) => {
       onKeyDown={ (evt) => handleSpotKeyDown(evt)  }
     />
     {!/^\d+$/.test(props.value)&&!/^\d+$/.test(keyDown) && keyDown &&(keyDown!=='Backspace')&& (
-      <Label basic color="red" pointing="left">
+      <Label basic color="red" pointing="above">
         Please enter a valid number
       </Label>
     )}
     {props.isChecking && !props.value && (
-        <Label basic color="red" pointing="left">
+        <Label basic color="red" pointing="above">
           Please enter {props.label}
         </Label>
       )}

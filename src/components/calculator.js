@@ -83,6 +83,11 @@ const Calculator = () => {
     7;
   let optimalGRPperConcept = offerDealNumber;
 
+  // caculate the traffic light
+
+  let maxGRP =
+    market && data[market]["Recommended max GRP per creative concept"];
+
   const reset = () => {
     setMarket("");
     setBudget("");
@@ -186,7 +191,8 @@ const Calculator = () => {
             </button>
           </div>
         </div>
-        {isConfirmed && (
+        
+        {isConfirmed &&(
           <div className="result">
             {/* <h3>Use Avg C/GRP for total GRP: {estimatedGRPs}</h3>
           <h3>Variations: {variations}</h3>
@@ -198,22 +204,18 @@ const Calculator = () => {
               <span>{estimatedGRPs && Math.round(estimatedGRPs)}</span>
             </div>
             <div className="resulRow">
-            <h1>
-              Estimated spots{" "}
-            </h1>
+              <h1>Estimated spots </h1>
               <span> {estimatedSpots && Math.round(estimatedSpots)} </span>
             </div>
             <div className="resulRow">
               <h3>
-              Would it be fatigued during the specified campaign period?{" "}
-            </h3>
+                Would it be fatigued during the specified campaign period?{" "}
+              </h3>
               <p>{isFatigued} </p>
             </div>
             {isFatigued === "YES" && (
               <div className="resulRow">
-              <h3>
-                Recommended number of concepts for period:{" "}
-              </h3>
+                <h3>Recommended number of concepts for period: </h3>
                 <p>
                   {recomendedNrConcept < 2
                     ? 2
@@ -222,40 +224,55 @@ const Calculator = () => {
               </div>
             )}
             <div className="resulRow">
-            <h3>Is the advertsing pressure too high? : </h3>
-            <p>{isTooHigh}</p>
+              <h3>Is the advertsing pressure too high? : </h3>
+              <p>{isTooHigh}</p>
             </div>
             {/* <h3>{advertsingPressure}</h3>
           <h3>{market&&data[market]["Recommended GRP per day"]}</h3> */}
             {isTooHigh === "YES" && (
               <div className="resulRow">
-              <h3>
-                Optimal weekly GRP Delivery:
-              </h3>
-              <p>{optimalWeeklyGRP && Math.round(optimalWeeklyGRP)}{" "}</p>
+                <h3>Optimal weekly GRP Delivery:</h3>
+                <p>{optimalWeeklyGRP && Math.round(optimalWeeklyGRP)} </p>
               </div>
             )}
             {isTooHigh === "YES" && (
               <div className="resulRow">
-              <h3>
-                Actual weekly GRP Delivery:{" "}
-              </h3>
-              <p>
-                {actualWeeklyGRP && Math.round(actualWeeklyGRP)}
-              </p>
+                <h3>Actual weekly GRP Delivery: </h3>
+                <p>{actualWeeklyGRP && Math.round(actualWeeklyGRP)}</p>
               </div>
             )}
             <div className="resulRow">
-            <h3>
-              Optimal GRP per creative concept:{" "}
-            </h3>
-            <p>
-              {optimalGRPperConcept && Math.round(optimalGRPperConcept)}
-            </p>
+              <h3>Optimal GRP per creative concept: </h3>
+              <p>{optimalGRPperConcept && Math.round(optimalGRPperConcept)}</p>
             </div>
             <h4>This is estimation not final recommendation</h4>
+           
+            {/* {estimatedGRPs}
+            <br />
+            {maxGRP * 0.9}
+            <br />
+            {maxGRP * 1.1}
+            <br /> */}
+            <div
+              className={`trafficLight ${
+                estimatedGRPs < maxGRP * 0.9
+                  ? "green"
+                  : estimatedGRPs > maxGRP * 1.1
+                  ? "red"
+                  : "amber"
+              }`}
+            >
+              {/* <div className={`trafficLight ${()=>{return "red"}}`}> */}
+              <p>
+                {estimatedGRPs < maxGRP * 0.9
+                  ? "Good news - the creative concept would not 'burnout' during the campaign period with the media pressure specified. If you need any further help in planning your campaign, you can reach out to the offline team by emailing TV@deliveryhero.com"
+                  : estimatedGRPs > maxGRP * 1.1
+                  ? " The current media spend for the time frame specified would cause the creatives to 'burnout'. We recommend you contact the offline team by emailing TV@Deliveryhero.com so that we can assist you in figuring out the right number of concepts to achieve the best cost efficiency and outcome"
+                  : "The current planned spend for the time frame you specified would result in the spots being close to burning out by the end of the campaign. We recommend you contact the offline team by emailing TV@Deliveryhero.com so that we can assist you in figuring out the right number of concepts to achieve the best cost efficiency and outcome"}
+              </p>
+            </div>
           </div>
-        )}
+         ) }
       </div>
     </Form>
   );
