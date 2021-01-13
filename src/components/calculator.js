@@ -5,7 +5,7 @@ import CountryList from "../constants/countryList";
 import DropdownField from "./dropDownField";
 import InputNumber from "./inputNumber";
 import RadioField from "./radioField";
-//import Tracking from "./tracking";
+import Tracking from "./tracking";
 
 const Calculator = () => {
   const countryList = new CountryList();
@@ -103,7 +103,6 @@ const Calculator = () => {
   return (
     <Form>
       <div className="contentWrapper">
-        {/* <Tracking/> */}
         <div className="inputFlield">
           <h3> Market</h3>
           {/* <h4>{market}</h4> */}
@@ -183,16 +182,32 @@ const Calculator = () => {
             handleChange={setOfferDeal}
           />
           <div className="buttonWrap radios">
-            <button className="resetButton" onClick={() => setIsChecking(true)}>
+            {/* <button className="resetButton" onClick={() => setIsChecking(true)}>
               Caculate
-            </button>
+            </button> */}
+            <Tracking
+              confirm={() => setIsChecking(true)}
+              market={market}
+              budget={budget}
+              campainLengthNumber={campainLengthNumber}
+              campainLengthType={campainLengthType}
+              spotLength={spotLength}
+              variation={variation}
+              campaign360={campaign360?"yes":"no"}
+              offerDeal={offerDeal?"yes":"no"}
+              outcome={ estimatedGRPs < maxGRP * 0.9
+                  ? "green"
+                  : estimatedGRPs > maxGRP * 1.1
+                  ? "red"
+                  : "amber"}
+            />
             <button className="resetButton" onClick={reset}>
               Reset
             </button>
           </div>
         </div>
-        
-        {isConfirmed &&(
+
+        {isConfirmed && (
           <div className="result">
             {/* <h3>Use Avg C/GRP for total GRP: {estimatedGRPs}</h3>
           <h3>Variations: {variations}</h3>
@@ -246,7 +261,7 @@ const Calculator = () => {
               <p>{optimalGRPperConcept && Math.round(optimalGRPperConcept)}</p>
             </div>
             <h4>This is estimation not final recommendation</h4>
-           
+
             {/* {estimatedGRPs}
             <br />
             {maxGRP * 0.9}
@@ -272,7 +287,7 @@ const Calculator = () => {
               </p>
             </div>
           </div>
-         ) }
+        )}
       </div>
     </Form>
   );
