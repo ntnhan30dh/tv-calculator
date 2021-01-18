@@ -81,7 +81,7 @@ const Calculator = () => {
       (campainLengthNumber *
         countryList.campainLengthType(campainLengthType))) *
     7;
-  let optimalGRPperConcept = offerDealNumber;
+  // let optimalGRPperConcept = offerDealNumber;
 
   // caculate the traffic light
 
@@ -256,10 +256,10 @@ const Calculator = () => {
                 <p>{actualWeeklyGRP && Math.round(actualWeeklyGRP)}</p>
               </div>
             )}
-            <div className="resulRow">
+            {/* <div className="resulRow">
               <h3>Optimal GRP per creative concept: </h3>
               <p>{optimalGRPperConcept && Math.round(optimalGRPperConcept)}</p>
-            </div>
+            </div> */}
             <h4>This is estimation not final recommendation</h4>
 
             {/* {estimatedGRPs}
