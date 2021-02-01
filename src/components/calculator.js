@@ -83,10 +83,13 @@ const Calculator = () => {
     7;
   // let optimalGRPperConcept = offerDealNumber;
 
+  
   // caculate the traffic light
-
+  
   let maxGRP =
-    market && data[market]["Recommended max GRP per creative concept"];
+  market && data[market]["Recommended max GRP per creative concept"];
+
+  let howLong = data&&market&&maxGRP/(advertsingPressure*7)
 
   const reset = () => {
     setMarket("");
@@ -193,13 +196,15 @@ const Calculator = () => {
               campainLengthType={campainLengthType}
               spotLength={spotLength}
               variation={variation}
-              campaign360={campaign360?"yes":"no"}
-              offerDeal={offerDeal?"yes":"no"}
-              outcome={ estimatedGRPs < maxGRP * 0.9
+              campaign360={campaign360 ? "yes" : "no"}
+              offerDeal={offerDeal ? "yes" : "no"}
+              outcome={
+                estimatedGRPs < maxGRP * 0.9
                   ? "green"
                   : estimatedGRPs > maxGRP * 1.1
                   ? "red"
-                  : "amber"}
+                  : "amber"
+              }
             />
             <button className="resetButton" onClick={reset}>
               Reset
@@ -239,7 +244,7 @@ const Calculator = () => {
               </div>
             )}
             <div className="resulRow">
-              <h3>Is the advertsing pressure too high? : </h3>
+              <h3>Is the advertsing pressure too high?  </h3>
               <p>{isTooHigh}</p>
             </div>
             {/* <h3>{advertsingPressure}</h3>
@@ -260,7 +265,13 @@ const Calculator = () => {
               <h3>Optimal GRP per creative concept: </h3>
               <p>{optimalGRPperConcept && Math.round(optimalGRPperConcept)}</p>
             </div> */}
-            <h4>This is estimation not final recommendation</h4>
+
+            <div className="resulRow">
+              <h3>
+                How many weeks can the creative concept run at this pressure ?{" "}
+              </h3>
+              <p>{howLong&&Math.round(howLong)}</p>
+            </div>
 
             {/* {estimatedGRPs}
             <br />
@@ -286,6 +297,11 @@ const Calculator = () => {
                   : "The current planned spend for the time frame you specified would result in the spots being close to burning out by the end of the campaign. We recommend you contact the offline team by emailing TV@Deliveryhero.com so that we can assist you in figuring out the right number of concepts to achieve the best cost efficiency and outcome"}
               </p>
             </div>
+            <p className="caution">
+              {" "}
+              *The results are an estimation only, based on past performance
+              learnings & best practice. It is not a final recommendation
+            </p>
           </div>
         )}
       </div>
