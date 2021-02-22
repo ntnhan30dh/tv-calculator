@@ -4,44 +4,169 @@ class CountryList {
   }
 
   orgArr = () => {
-    let res = [
-      [
-        "Market",
-        "Buying method",
-        'Avg 30" C/GRP',
-        'Avg 30" C/spot',
-        "Cost per Second",
-        "Recommended max GRP per creative concept",
-        "Recommended GRP per week",
-        "Recommended GRP per day",
-        "Deal/ Offer Cap",
-      ],
-      [
-        "SA",
-        "C/spot",
-        "500",
-        "120",
-        "16.66666667",
-        "3000",
-        "300",
-        "42.85714286",
-        "500",
-        "",
-        "",
-        "= Input from offline team",
-      ],
-      [
-        "HU",
-        "GRP per spot",
-        "300",
-        "100",
-        "10",
-        "2000",
-        "200",
-        "28.57142857",
-        "500",
-      ],
-    ];
+    let res =  [
+                  [
+                      "Market",
+                      "Buying method",
+                      "Avg 30\" C/GRP",
+                      "Avg 30\" C/spot",
+                      "Cost per Second",
+                      "Recommended max GRP per creative concept",
+                      "Recommended GRP per week",
+                      "Recommended GRP per day",
+                      "Deal/ Offer GRP Cap"
+                  ],
+                  [
+                      "SA",
+                      "C/spot",
+                      "500",
+                      "120",
+                      "16.66666667",
+                      "3000",
+                      "300",
+                      "42.85714286",
+                      "500",
+                      "",
+                      "",
+                      "= Input from offline team"
+                  ],
+                  [
+                      "HU",
+                      "GRP per spot",
+                      "300",
+                      "100",
+                      "10",
+                      "2000",
+                      "200",
+                      "28.57142857",
+                      "500"
+                  ],
+                  [
+                      "AT",
+                      "GRP per spot",
+                      "200",
+                      "60",
+                      "7",
+                      "3000",
+                      "400",
+                      "57.14285714",
+                      "2000"
+                  ],
+                  [
+                      "TH",
+                      "GRP per spot",
+                      "480",
+                      "180",
+                      "16",
+                      "1500",
+                      "250",
+                      "35.71428571",
+                      "800"
+                  ],
+                  [
+                      "TW",
+                      "GRP per spot",
+                      "302",
+                      "60",
+                      "10",
+                      "2000",
+                      "400",
+                      "57.14285714",
+                      "1500"
+                  ],
+                  [
+                      "BD",
+                      "Rate per minute",
+                      "240",
+                      "12",
+                      "8",
+                      "1500",
+                      "200",
+                      "28.57142857",
+                      "800"
+                  ],
+                  [
+                      "AR",
+                      "GRP per spot",
+                      "215",
+                      "115",
+                      "7",
+                      "3000",
+                      "300",
+                      "42.85714286",
+                      "2500",
+                      "",
+                      "",
+                      "",
+                      "",
+                      "",
+                      "Time input",
+                      "Total GRPs",
+                      "Maximum GRPs"
+                  ],
+                  [
+                      "CL",
+                      "GRP per spot",
+                      "225",
+                      "120",
+                      "8",
+                      "2500",
+                      "300",
+                      "42.85714286",
+                      "2500",
+                      "",
+                      "",
+                      "",
+                      "",
+                      "",
+                      "4",
+                      "500"
+                  ],
+                  [
+                      "PH",
+                      "GRP per spot",
+                      "400",
+                      "600",
+                      "13",
+                      "1500",
+                      "250",
+                      "35.71428571",
+                      "1000"
+                  ],
+                  [
+                      "RO",
+                      "GRP per spot",
+                      "230",
+                      "35",
+                      "8",
+                      "1500",
+                      "225",
+                      "32.14285714",
+                      "900"
+                  ],
+                  [
+                      "SA",
+                      "Cost per spot",
+                      "193",
+                      "972",
+                      "6",
+                      "4000",
+                      "330",
+                      "47.14285714",
+                      "1100"
+                  ],
+                  [
+                      "GCC",
+                      "Cost per spot",
+                      "47.5",
+                      "972",
+                      "2",
+                      "9000",
+                      "700",
+                      "100",
+                      "3000"
+                  ]
+              ]
 
     return res;
   };
@@ -115,7 +240,6 @@ class CountryList {
         return 84;
       default:
     }
-    
   };
 
   spotLength = () => {
@@ -131,7 +255,7 @@ class CountryList {
     return res;
   };
 
-  costPerSpot = (spotLength)=>{
+  costPerSpot = (spotLength) => {
     switch (spotLength) {
       case 5:
         return 16.7;
@@ -143,12 +267,11 @@ class CountryList {
         return 66.67;
       case 25:
         return 83.33;
-        case 30:
-          return 100;
+      case 30:
+        return 100;
       default:
     }
-
-  }
+  };
 
   variation = () => {
     let names = [1, 2, 3, 4, 5];
