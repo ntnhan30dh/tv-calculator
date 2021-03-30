@@ -265,7 +265,7 @@ body {
     //  display: flex;
     grid-template-columns: 50% 50%;
     grid-template-rows: auto auto auto auto auto;
-    padding-top: 5%;
+    padding-top: 3%;
     @media screen and (max-width: 700px) {
       padding-top: 25%;
     }
@@ -307,7 +307,7 @@ body {
 
       h3 {
         font-family: "Corpid C1s";
-        font-size: 24px;
+        font-size: 20px;
         font-weight: normal;
         font-stretch: normal;
         font-style: normal;
@@ -437,4 +437,10 @@ body {
 .ui.form {
   font-size: 1rem;
   height: 100%;
+}
+
+
+
+.ui.basic.grey.button {
+  border: 1px solid red;
 }

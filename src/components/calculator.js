@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form } from "semantic-ui-react";
+import { Form, Popup, Icon } from "semantic-ui-react";
 
 import CountryList from "../constants/countryList";
 import DropdownField from "./dropDownField";
@@ -83,13 +83,12 @@ const Calculator = () => {
     7;
   // let optimalGRPperConcept = offerDealNumber;
 
-  
   // caculate the traffic light
-  
-  let maxGRP =
-  market && data[market]["Recommended max GRP per creative concept"];
 
-  let howLong = data&&market&&maxGRP/(advertsingPressure*7)
+  let maxGRP =
+    market && data[market]["Recommended max GRP per creative concept"];
+
+  let howLong = data && market && maxGRP / (advertsingPressure * 7);
 
   const reset = () => {
     setMarket("");
@@ -107,7 +106,14 @@ const Calculator = () => {
     <Form>
       <div className="contentWrapper">
         <div className="inputFlield">
-          <h3> Market</h3>
+          <h3>
+            {" "}
+            Market{" "}
+            <Popup
+              content="Additional markets coming soon"
+              trigger={<Icon name="info circle" color="grey" />}
+            />
+          </h3>
           {/* <h4>{market}</h4> */}
           <DropdownField
             placeholder="Select Market"
@@ -148,7 +154,7 @@ const Calculator = () => {
             />
           </div>
 
-          <h3> Spot Length</h3>
+          <h3> Spot Length (in sec)</h3>
           {/* <h4>{spotLength}</h4> */}
           <DropdownField
             placeholder="Select Spot length"
@@ -159,7 +165,14 @@ const Calculator = () => {
             isChecking={isChecking}
           />
 
-          <h3>N° of variations</h3>
+          <h3>
+            N° of variations{" "}
+            <Popup
+              content="A variation would be different version which reuses the same footage, style, voice over, messaging etc. One example would be 2 spots promoting the same offer, with the same voiceover and CTA, but using different footage or actors."
+              trigger={<Icon name="question circle" color="grey" />}
+            />
+          </h3>
+
           {/* <h4>{variation}</h4> */}
           <DropdownField
             placeholder="Enter number of variations"
@@ -244,7 +257,7 @@ const Calculator = () => {
               </div>
             )}
             <div className="resulRow">
-              <h3>Is the advertsing pressure too high?  </h3>
+              <h3>Is the advertsing pressure too high? </h3>
               <p>{isTooHigh}</p>
             </div>
             {/* <h3>{advertsingPressure}</h3>
@@ -270,7 +283,7 @@ const Calculator = () => {
               <h3>
                 How many weeks can the creative concept run at this pressure ?{" "}
               </h3>
-              <p>{howLong&&Math.round(howLong)}</p>
+              <p>{howLong && Math.round(howLong)}</p>
             </div>
 
             {/* {estimatedGRPs}

@@ -47,7 +47,7 @@ const Tracking = (props) => {
     <div>
       {/* <button className="resetButton" onClick={()=>appendSpreadsheet(newRow)}>Feed</button> */}
       <button className="resetButton" onClick={handleClick}>
-      Caculate
+      Calculate
       </button>
     </div>
   );
