@@ -40,7 +40,7 @@ const Calculator = () => {
       ? true
       : false;
 
-  let estimatedGRPs = budget && spotLength && budget / (spotLength * 10);
+  let estimatedGRPs =  market &&budget && spotLength && (budget / ((data[market]["Avg 30\" C/GRP"]/30)*spotLength));
   let variations =
     market &&
     variation &&
