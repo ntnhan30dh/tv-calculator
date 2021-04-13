@@ -5,6 +5,7 @@ class CountryList {
 
   orgArr = () => {
     let res =  [
+      
                     [
                         "Market",
                         "Buying method",
@@ -136,9 +137,9 @@ class CountryList {
                     [
                         "GCC",
                         "Cost per spot",
-                        "47.5",
+                        "106.0",
                         "972",
-                        "2",
+                        "4",
                         "9000",
                         "700",
                         "100",
